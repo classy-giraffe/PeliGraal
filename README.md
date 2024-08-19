@@ -16,9 +16,3 @@ ___
 | 20   	| ❌                                     	| `ghcr.io/rikodev/pterodactyl-graalvm:20-JDK` 	| ❌                                         	|
 | 21   	| ❌                                     	| `ghcr.io/rikodev/pterodactyl-graalvm:21-JDK` 	| ❌                                         	|
 | 22    | ❌                                     	| `ghcr.io/rikodev/pterodactyl-graalvm:22-JDK` 	| ❌                                         	|
-
-___
-
-## Sponsor
-
-[![playbase.pro](https://playbase.pro/storage/branding/banner.jpg)](https://playbase.pro/en)
