@@ -15,8 +15,6 @@ jobs:
       matrix:
         tag:
           - 21-JDK
-          - 11-EE
-          - 17-EE
     steps:
       - name: Checkout
         uses: actions/checkout@v4
