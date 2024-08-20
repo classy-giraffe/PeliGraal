@@ -1,4 +1,4 @@
-FROM debian:stable-slim
+FROM bitnami/minideb:latest
 
 ARG TARGETPLATFORM
 ARG JAVA_VERSION=21
@@ -10,8 +10,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Default to UTF-8 file.encoding
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
-RUN apt-get update -y \
-  && apt-get install -y curl ca-certificates openssl git tar sqlite3 fontconfig tzdata locales iproute2 \
+RUN install_packages curl ca-certificates locales iproute2 \
   && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
   && locale-gen en_US.UTF-8 \
   && case ${TARGETPLATFORM} in \
@@ -34,12 +33,8 @@ ENV JAVA_HOME=/opt/java/graalvm \
 
 # Step 2 - add pterodactyl stuff
 RUN useradd -d /home/container -m container
-
 USER        container
 ENV         USER=container HOME=/home/container
-
 WORKDIR     /home/container
-
 COPY        ./../entrypoint.sh /entrypoint.sh
-
 CMD         ["/bin/bash", "/entrypoint.sh"]

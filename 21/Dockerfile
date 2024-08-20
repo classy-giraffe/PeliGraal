@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM debian:stable-slim
 
 ARG TARGETPLATFORM
 ARG JAVA_VERSION=21
@@ -34,12 +34,8 @@ ENV JAVA_HOME=/opt/java/graalvm \
 
 # Step 2 - add pterodactyl stuff
 RUN useradd -d /home/container -m container
-
 USER        container
 ENV         USER=container HOME=/home/container
-
 WORKDIR     /home/container
-
 COPY        ./../entrypoint.sh /entrypoint.sh
-
 CMD         ["/bin/bash", "/entrypoint.sh"]

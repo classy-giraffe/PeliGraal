@@ -16,7 +16,6 @@ jobs:
         tag:
           - 17
           - 21
-          - 21-debian
           - 22
     steps:
       - name: Checkout
