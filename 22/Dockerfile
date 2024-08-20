@@ -2,7 +2,8 @@ FROM ubuntu:24.04
 
 ARG TARGETPLATFORM
 ARG JAVA_VERSION=22
-LABEL MAINTAINER="Tommaso Chiti, <chitilivorno@gmail.com>"
+LABEL AUTHOR="Tommaso Chiti"
+LABEL MAINTAINER="chitilivorno@gmail.com"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -18,12 +19,15 @@ RUN apt-get update -y \
          "linux/arm64")  ARCH=aarch64  ;; \
     esac \
   && curl --retry 3 -Lfso /tmp/graalvm.tar.gz https://download.oracle.com/graalvm/${JAVA_VERSION}/latest/graalvm-jdk-${JAVA_VERSION}_linux-${ARCH}_bin.tar.gz \
+  && curl --retry 3 -Lfso /tmp/graalvm.tar.gz.sha256 https://download.oracle.com/graalvm/${JAVA_VERSION}/latest/graalvm-jdk-${JAVA_VERSION}_linux-${ARCH}_bin.tar.gz.sha256 \
+  && echo "$(cat /tmp/graalvm.tar.gz.sha256)  /tmp/graalvm.tar.gz" | sha256sum -c - \
+  && echo "Hash verification succeeded!" \
   && mkdir -p /opt/java/graalvm \
   && cd /opt/java/graalvm \
   && tar -xf /tmp/graalvm.tar.gz --strip-components=1 \
   && export PATH="/opt/java/graalvm/bin:$PATH" \
   && rm -rf /var/lib/apt/lists/* \
-  && rm -rf /tmp/graalvm.tar.gz
+  && rm -rf /tmp/graalvm.tar.gz /tmp/graalvm.tar.gz.sha256
 
 ENV JAVA_HOME=/opt/java/graalvm \
     PATH="/opt/java/graalvm/bin:$PATH"
