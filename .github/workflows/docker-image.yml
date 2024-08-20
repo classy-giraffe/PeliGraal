@@ -8,7 +8,7 @@ on:
 
 jobs:
   pterodactyl-graalvm:
-    name: "pterodactyl-graalvm:${{ matrix.tag }}"
+    name: "PeliGraal:${{ matrix.tag }}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false

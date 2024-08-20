@@ -8,7 +8,7 @@ LABEL MAINTAINER="chitilivorno@gmail.com"
 # Default to UTF-8 file.encoding
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
-RUN apk add --no-cache curl git tar openssl sqlite ca-certificates fontconfig tzdata iproute2 \
+RUN apk add --no-cache bash curl git tar openssl sqlite ca-certificates fontconfig tzdata iproute2 \
   && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
   && case ${TARGETPLATFORM} in \
          "linux/amd64")  ARCH=x64  ;; \
