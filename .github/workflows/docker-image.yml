@@ -16,6 +16,7 @@ jobs:
         tag:
           - 17
           - 21
+          - 21-alpine
           - 22
     steps:
       - name: Checkout
@@ -56,5 +57,5 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta_graalvm.outputs.tags }}
           labels: ${{ steps.meta_graalvm.outputs.labels }}
-          cache-from: type=registry,ref=user/app:latest
-          cache-to: type=inline
+          cache-from: type=gha
+          cache-to: type=gha,mode=max`
